@@ -16,6 +16,12 @@ A **API Moto Connect** é o backend central para a gestão da frota de motociclo
 
 ---
 
+### Vídeo explicativo da solução:
+
+* ** https://www.youtube.com/watch?v=W5D3F2VEr3whttps://www.youtube.com/watch?v=W5D3F2VEr3w
+
+---
+
 ##  2. Arquitetura da Infraestrutura
 
 A solução foi implementada utilizando o modelo **PaaS (Plataforma como Serviço)** da Azure, com todos os recursos provisionados via **Azure CLI** para garantir a automação e a rastreabilidade (Infraestrutura como Código).
