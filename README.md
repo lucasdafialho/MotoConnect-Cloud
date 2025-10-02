@@ -18,7 +18,7 @@ A **API Moto Connect** é o backend central para a gestão da frota de motociclo
 
 ### Vídeo explicativo da solução:
 
-* ** https://www.youtube.com/watch?v=W5D3F2VEr3whttps://www.youtube.com/watch?v=W5D3F2VEr3w
+* ** https://www.youtube.com/watch?v=W5D3F2VEr3w
 
 ---
 
