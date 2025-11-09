@@ -8,14 +8,14 @@ NC='\033[0m'
 
 echo -e "${YELLOW}Etapa 1: Configurando variáveis...${NC}"
 
-RESOURCE_GROUP="rg-challenge-fiap-557884"
+RESOURCE_GROUP="rg-challenge-fiap-558424"
 LOCATION="brazilsouth"
-DB_SERVER_NAME="sql-motoconnect-557884"
+DB_SERVER_NAME="sql-motoconnect-558424"
 DB_NAME="motoconnectdb"
-APP_SERVICE_PLAN="asp-motoconnect-fiap-557884"
-WEB_APP_NAME="webapp-motoconnect-557884"
-DB_ADMIN_USER=""
-DB_ADMIN_PASSWORD=""
+APP_SERVICE_PLAN="asp-motoconnect-fiap-558424"
+WEB_APP_NAME="webapp-motoconnect-558424"
+DB_ADMIN_USER="admin_bd_challenge"
+DB_ADMIN_PASSWORD="SenhaForte123!"
 
 echo -e "${GREEN}✓ Variáveis configuradas${NC}\n"
 
@@ -130,30 +130,33 @@ echo -e "${GREEN}✓ App Settings configurado${NC}\n"
 
 # --- Deploy da Aplicação ---
 
+# --- Detectar projeto principal (API) ---
 echo -e "${YELLOW}Etapa 11: Preparando projeto .NET...${NC}"
 
-PROJECT_FILE=$(find . -maxdepth 2 -name "*.csproj" -o -name "*.sln" | head -n 1)
+# Força a seleção do projeto principal (Api.csproj)
+PROJECT_FILE=$(find . -type f -name "Api.csproj" | head -n 1)
 
 if [ -z "$PROJECT_FILE" ]; then
-    echo "Nenhum projeto encontrado. Clonando repositório..."
-    
+    echo "Nenhum projeto Api.csproj encontrado. Clonando repositório..."
+
     if [ -d "challenge-moto-connect" ]; then
         echo "Removendo clone anterior..."
         rm -rf challenge-moto-connect
     fi
-    
+
     git clone https://github.com/mateush-souza/challenge-moto-connect.git
     cd challenge-moto-connect
-    
-    PROJECT_FILE=$(find . -maxdepth 2 -name "*.sln" | head -n 1)
-    
+
+    PROJECT_FILE=$(find . -type f -name "Api.csproj" | head -n 1)
+
     if [ -z "$PROJECT_FILE" ]; then
-        echo -e "${YELLOW}Erro: Não foi possível encontrar projeto .NET no repositório clonado.${NC}"
+        echo -e "${YELLOW}Erro: Não foi possível encontrar Api.csproj no repositório clonado.${NC}"
         exit 1
-    fi                                                                  
+    fi
 fi
 
 echo "Projeto encontrado: $PROJECT_FILE"
+
 echo -e "${YELLOW}Compilando aplicação...${NC}"
 dotnet publish "$PROJECT_FILE" -c Release -o ./publish
 echo -e "${GREEN}✓ Aplicação compilada${NC}\n"
